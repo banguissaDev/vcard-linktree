@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f4f8; /* Soft background outside the phone area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#bg-particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 420px;
+    background-color: #f9fbfa;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1; /* Keep above bg particles */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* For larger screens, keep it as a clean card */
+@media (min-width: 480px) {
+    .mobile-container {
+        border-radius: 20px;
+        min-height: 850px;
+        margin: 40px 0;
+    }
+}
+
+.header-red {
+    background: linear-gradient(135deg, #b01b22 0%, #831419 100%); /* slightly dynamic gradient */
+    height: 220px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden; /* Ensure particles don't escape */
+}
+
+/* Particle Animation */
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    animation: float infinite linear;
+    pointer-events: none;
+}
+
+.particle.red {
+    background-color: rgba(176, 27, 34, 0.15); /* Red particles */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) translateX(30px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    margin-top: 140px; /* How much of the red shows */
+    background-color: #fff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    flex-grow: 1;
+    padding: 0 25px 30px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    background-color: #fff;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.08); 
+    margin-top: -65px; /* Pull it halfway up over the boundary */
+    margin-bottom: 20px;
+    padding: 5px; /* White border effect */
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.company-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0b2241; /* Dark navy */
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.description {
+    font-size: 15px;
+    color: #6a7c92;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.info-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.badge {
+    background-color: #f1f4f6;
+    color: #b01b22;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.links-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.link-card {
+    display: flex;
+    align-items: center;
+    background-color: #fafbfc;
+    padding: 10px 20px 10px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #0b2241;
+    transition: all 0.25s ease;
+    border: 1px solid #f0f2f5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-color: #e2e8f0;
+}
+
+.link-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.icon-img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: #ef4444; /* red dot like in screenshot */
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.link-title {
+    font-weight: 600;
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.arrow-icon {
+    color: #0b2241;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+.link-card:hover .arrow-icon {
+    transform: translateX(4px);
+}
+
+.developer-credit {
+    margin-top: 25px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.developer-credit a {
+    color: #6a7c92;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.developer-credit a:hover {
+    color: #25D366; /* WhatsApp Green */
+}
+
+.counter-section {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    border-top: 1px solid #f0f2f5;
+}
+
+.counter-box {
+    background-color: #f8fafc;
+    color: #64748b;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+#visit-count {
+    color: #b01b22;
+    font-weight: 700;
+    font-size: 14px;
+}
